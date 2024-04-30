@@ -1,0 +1,6 @@
+@ServerLibrary.Repo_HostAddress = http://localhost:5164
+
+GET {{ServerLibrary.Repo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
