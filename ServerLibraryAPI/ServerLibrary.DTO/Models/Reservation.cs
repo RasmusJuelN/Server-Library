@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.DTO.Models
 {
-    internal class Reservation
+    public class Reservation
+
     {
+        Guid Id { get; set; }
+        Guid ServerId { get; set; }
+        Guid UserId { get; set; }
+        DateTime StartTime { get; set; }
+        DateTime EndTime { get; set; }
+        string? Status { get; set; }
     }
 }
