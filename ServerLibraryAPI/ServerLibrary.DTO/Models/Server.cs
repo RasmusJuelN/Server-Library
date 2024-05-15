@@ -8,10 +8,10 @@ namespace ServerLibrary.DTO.Models
 {
     public class Server
     {
-        Guid Id { get; set; }
-        string? Name { get; set; }
-        string? Description { get; set; }
-        bool IsAvailable { get; set; }
-        DateTime CreatedAt { get; set; }
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public bool IsAvailable { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }
