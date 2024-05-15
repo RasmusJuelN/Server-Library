@@ -9,11 +9,15 @@ namespace ServerLibrary.DTO.Models
     public class Reservation
 
     {
-        Guid Id { get; set; }
-        Guid ServerId { get; set; }
-        Guid UserId { get; set; }
-        DateTime StartTime { get; set; }
-        DateTime EndTime { get; set; }
-        string? Status { get; set; }
+        public Guid Id { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string? Status { get; set; }
+
+        public Guid ServerId { get; set; }
+        public Server Server { get; set; }
+
+        public Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }
