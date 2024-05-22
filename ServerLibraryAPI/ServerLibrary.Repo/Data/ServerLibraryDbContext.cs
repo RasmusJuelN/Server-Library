@@ -14,11 +14,10 @@ namespace ServerLibrary.Repo.Data
         {
 
         }
-
+     
         public DbSet<User> Users { get; set; }
         public DbSet<Server> Servers { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-
 
     }
 }
