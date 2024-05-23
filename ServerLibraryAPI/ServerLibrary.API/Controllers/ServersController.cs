@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.DTO.Models;
 using ServerLibrary.Repo.Data;
+using ServerLibrary.Repo.Interfaces;
 
 namespace ServerLibrary.API.Controllers
 {
@@ -14,25 +15,25 @@ namespace ServerLibrary.API.Controllers
     [ApiController]
     public class ServersController : ControllerBase
     {
-        private readonly ServerLibraryDbContext _context;
+        private readonly IRepository<Server> _serverRepository;
 
-        public ServersController(ServerLibraryDbContext context)
+        public ServersController(IRepository<Server> serverRepository)
         {
-            _context = context;
+            _serverRepository = serverRepository;
         }
 
         // GET: api/Servers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Server>>> GetServers()
         {
-            return await _context.Servers.ToListAsync();
+            return Ok(await _serverRepository.GetAllAsync());
         }
 
         // GET: api/Servers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Server>> GetServer(Guid id)
         {
-            var server = await _context.Servers.FindAsync(id);
+            var server = await _serverRepository.GetByIdAsync(id);
 
             if (server == null)
             {
@@ -43,7 +44,6 @@ namespace ServerLibrary.API.Controllers
         }
 
         // PUT: api/Servers/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutServer(Guid id, Server server)
         {
@@ -52,15 +52,15 @@ namespace ServerLibrary.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(server).State = EntityState.Modified;
+            await _serverRepository.UpdateAsync(server);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _serverRepository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ServerExists(id))
+                if (!await _serverRepository.ExistsAsync(id))
                 {
                     return NotFound();
                 }
@@ -74,12 +74,11 @@ namespace ServerLibrary.API.Controllers
         }
 
         // POST: api/Servers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Server>> PostServer(Server server)
         {
-            _context.Servers.Add(server);
-            await _context.SaveChangesAsync();
+            await _serverRepository.AddAsync(server);
+            await _serverRepository.SaveChangesAsync();
 
             return CreatedAtAction("GetServer", new { id = server.Id }, server);
         }
@@ -88,21 +87,10 @@ namespace ServerLibrary.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteServer(Guid id)
         {
-            var server = await _context.Servers.FindAsync(id);
-            if (server == null)
-            {
-                return NotFound();
-            }
-
-            _context.Servers.Remove(server);
-            await _context.SaveChangesAsync();
+            await _serverRepository.DeleteAsync(id);
+            await _serverRepository.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool ServerExists(Guid id)
-        {
-            return _context.Servers.Any(e => e.Id == id);
         }
     }
 }

@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+
+using ServerLibrary.DTO.Models;
 using ServerLibrary.Repo.Data;
+using ServerLibrary.Repo.Interfaces;
+using ServerLibrary.Repo.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ServerLibraryDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddCors(options =>
 {

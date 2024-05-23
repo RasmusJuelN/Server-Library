@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.DTO.Models;
 using ServerLibrary.Repo.Data;
+using ServerLibrary.Repo.Interfaces;
 
 namespace ServerLibrary.API.Controllers
 {
@@ -14,25 +15,26 @@ namespace ServerLibrary.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ServerLibraryDbContext _context;
+        private readonly IRepository<User> _userRepository;
 
-        public UsersController(ServerLibraryDbContext context)
+        public UsersController(IRepository<User> userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            
         }
 
         // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return Ok(await _userRepository.GetAllAsync());
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(Guid id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _userRepository.GetByIdAsync(id);
 
             if (user == null)
             {
@@ -43,7 +45,6 @@ namespace ServerLibrary.API.Controllers
         }
 
         // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
@@ -52,15 +53,15 @@ namespace ServerLibrary.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            await _userRepository.UpdateAsync(user);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _userRepository.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!await _userRepository.ExistsAsync(id))
                 {
                     return NotFound();
                 }
@@ -74,12 +75,11 @@ namespace ServerLibrary.API.Controllers
         }
 
         // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddAsync(user);
+            await _userRepository.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
@@ -88,21 +88,10 @@ namespace ServerLibrary.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.DeleteAsync(id);
+            await _userRepository.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool UserExists(Guid id)
-        {
-            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

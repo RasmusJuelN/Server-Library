@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.DTO.Models
 {
-    public class Server
+    public class Server : BaseModel
     {
-        public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public bool IsAvailable { get; set; }
