@@ -1,0 +1,21 @@
+<div class="login-container">
+    <h1 class="header-text">Login</h1>
+    <form class="login-form1" [formGroup]="loginForm">
+        <div class="input-box">
+            <input formControlName="username" type="text" required>
+            <i>Username</i>
+        </div>
+
+    <div class="input-box">
+        <input formControlName="password" type="password" required>
+        <i>Password</i>
+    </div>
+
+        <button class="login-btn" (click)="onLogin()" [disabled]="loginForm.invalid" type="submit" id="login-button">Login</button>
+        <p>No Tempo? <a routerLink="/register"> Register now!</a></p>
+        <a class="forgotpassword" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Reset Password
+        </a>
+          
+    </form>
+</div>
