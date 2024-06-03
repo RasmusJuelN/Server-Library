@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ServerLibrary.DTO.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.Repo.Data
 {
-    public class ServerLibraryDbContext : DbContext
+    public class ServerLibraryDbContext :IdentityDbContext<User>
     {
         public ServerLibraryDbContext(DbContextOptions<ServerLibraryDbContext> option) : base(option) 
         {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.DTO.Models
 {
-    public class User : BaseModel
+    public class User : IdentityUser, IEntity
     {
         public string? Token { get; set; }
         public string? Username { get; set; }
@@ -15,5 +17,6 @@ namespace ServerLibrary.DTO.Models
         public string? Email { get; set; }
         public string? Role { get; set; }
         public DateTime CreatedAt { get; set; }
+        Guid IEntity.Id { get; set; }
     }
 }

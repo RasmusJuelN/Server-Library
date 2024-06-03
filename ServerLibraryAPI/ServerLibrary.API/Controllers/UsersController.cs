@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServerLibrary.DTO.Models;
@@ -48,7 +49,7 @@ namespace ServerLibrary.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != user.Id)
+            if (id.ToString() != user.Id)
             {
                 return BadRequest();
             }

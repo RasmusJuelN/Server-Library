@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 using ServerLibrary.DTO.Models;
@@ -17,6 +18,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ServerLibraryDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddEntityFrameworkStores<ServerLibraryDbContext>();
+
+//builder.Services.AddIdentity<User, IdentityRole>()
+//        .AddEntityFrameworkStores<ServerLibraryDbContext>()
+//        .AddDefaultTokenProviders();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddCors(options =>
@@ -35,6 +45,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapIdentityApi<User>();
 
 app.UseHttpsRedirection();
 

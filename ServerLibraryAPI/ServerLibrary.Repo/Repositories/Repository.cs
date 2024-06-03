@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.Repo.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : BaseModel
+    public class Repository<T> : IRepository<T> where T : class, IEntity
     {
         private readonly ServerLibraryDbContext _context;
 
