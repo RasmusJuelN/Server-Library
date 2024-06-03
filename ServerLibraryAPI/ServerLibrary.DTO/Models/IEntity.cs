@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ServerLibrary.DTO.Models
 {
-    public abstract class BaseModel : IEntity
+    public interface IEntity
     {
-        public Guid Id { get ; set; }
-
-        
+        Guid Id { get; set; }
     }
 }
