@@ -13,9 +13,7 @@ export class UserService {
   private id$ = new BehaviorSubject<number>(0);
   constructor(private http:HttpClient) { }
 
-  signup(signupRequest:any){
-    return this.http.post<any>(`${this.baseUrl}`,signupRequest);
-  }
+  
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
