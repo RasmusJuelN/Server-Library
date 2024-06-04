@@ -11,7 +11,7 @@ using ServerLibrary.Repo.Interfaces;
 
 namespace ServerLibrary.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ReservationsController : ControllerBase
     {
