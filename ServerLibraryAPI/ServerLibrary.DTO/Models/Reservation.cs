@@ -11,12 +11,8 @@ namespace ServerLibrary.DTO.Models
     {
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public string? Status { get; set; }
-
-        public string? ServerId { get; set; }
-        public Server? Server { get; set; }
-
-        public string? UserId { get; set; }
-        public User? User { get; set; }
+        public string Status { get; set; }
+        public string ServerId { get; set; }
+        public string UserId { get; set; }
     }
 }

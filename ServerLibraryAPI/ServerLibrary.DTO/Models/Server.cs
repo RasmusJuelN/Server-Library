@@ -8,9 +8,8 @@ namespace ServerLibrary.DTO.Models
 {
     public class Server : BaseModel
     {
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public string? Description { get; set; }
         public bool IsAvailable { get; set; }
-        public DateTime CreatedAt { get; set; }
     }
 }
