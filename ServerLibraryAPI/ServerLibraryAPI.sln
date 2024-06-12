@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerLibrary.API", "Server
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerLibrary.Test", "ServerLibrary.Test\ServerLibrary.Test.csproj", "{D84412E9-50CD-4F95-AE30-41F0026179F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerLibrary.DTO", "ServerLibrary.DTO\ServerLibrary.DTO.csproj", "{E736F12D-943C-412A-9434-5555D9030975}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerLibrary.DTO", "ServerLibrary.DTO\ServerLibrary.DTO.csproj", "{E736F12D-943C-412A-9434-5555D9030975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerLibrary.Repo", "ServerLibrary.Repo\ServerLibrary.Repo.csproj", "{CECC626A-294C-4BA0-A061-C4917F4204CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerLibrary.Repo", "ServerLibrary.Repo\ServerLibrary.Repo.csproj", "{CECC626A-294C-4BA0-A061-C4917F4204CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19ADA8CD-1113-4453-8610-58AEF88B1099}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
