@@ -11,26 +11,29 @@
                   <div class="text-center">
                     <img src="../assets/tec.png"
                       style="width: 185px;" alt="logo">
-                    <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                    <h4 class="mt-5 mb-5 ">Please login to your account</h4>
                   </div>
   
                   <form class="login-form1" [formGroup]="loginForm">
-                    <p>Please login to your account</p>
+                    
   
                     <div data-mdb-input-init class="form-outline mb-4">
-                      <input type="email" id="form2Example11" class="form-control"
-                        placeholder="Phone number or email address"formControlName="username" type="text" required />
                       <label class="form-label" for="form2Example11">Username</label>
+                      <input type="email" id="form2Example11" class="form-control"
+                        placeholder="Email or username"formControlName="username" type="text" required />
+                      
                     </div>
   
                     <div data-mdb-input-init class="form-outline mb-4">
-                      <input type="password" id="form2Example22" class="form-control" formControlName="password" type="password" required/>
                       <label class="form-label" for="form2Example22">Password</label>
+                      <input type="password" id="form2Example22" class="form-control" formControlName="password" type="password" required/>
+                      
                     </div>
   
                     <div class="text-center pt-1 mb-1 pb-">
-                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-block fa-lg gradient-custom-2 mb-2" (click)="onLogin()" [disabled]="loginForm.invalid" type="submit">Log
-                        in</button>
+                      <button data-mdb-button-init data-mdb-ripple-init class="btn border-0 fa-lg gradient-custom-2 mb-2 text-white" 
+                      (click)="onLogin()" [disabled]="loginForm.invalid" type="submit">Login
+                    </button>
                     
                     </div>
                     <div class="text-center pt-0 mb-3 pb-4">
@@ -47,10 +50,10 @@
               </div>
               <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                  <h4 class="mb-4">We are more than just a company</h4>
-                  <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <h2 class="mb-4">Welcome</h2>
+                  <p class="large mb-0">The Server Library Program is a simple platform where students can borrow servers for their educational projects. 
+                    It provides an easy way for students to access the server resources they need for learning and experimentation.</p>              
+                    <br>This project is maintained by the SKP team. If any problems occur, students are encouraged to report the errors so they can be fixed.
                 </div>
               </div>
             </div>
