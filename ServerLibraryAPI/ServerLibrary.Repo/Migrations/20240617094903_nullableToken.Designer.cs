@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServerLibrary.Repo.Data;
 
@@ -11,9 +12,11 @@ using ServerLibrary.Repo.Data;
 namespace ServerLibrary.Repo.Migrations
 {
     [DbContext(typeof(ServerLibraryDbContext))]
-    partial class ServerLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240617094903_nullableToken")]
+    partial class nullableToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

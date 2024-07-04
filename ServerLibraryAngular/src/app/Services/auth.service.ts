@@ -9,7 +9,7 @@ import { environment } from '../Environment/Environment';
 
   export class AuthService {
 
-    baseUrl: string = environment.apiUrl;
+    baseUrl: string = environment.apiUrl + "Account/";
     constructor(private http:HttpClient){}
 
     register(signupRequest:any){

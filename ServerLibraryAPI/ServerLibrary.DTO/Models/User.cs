@@ -11,7 +11,7 @@ namespace ServerLibrary.DTO.Models
 {
     public class User : IdentityUser, IEntity
     {
-        public string Token { get; set; }
+        public string? Token { get; set; }
         public string Password { get; set; }
         [Required]
         public string FirstName { get; set; }
