@@ -3,16 +3,20 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { inject } from '@angular/core';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, RouterModule],
+  imports: [ ReactiveFormsModule, RouterModule, MatButtonModule, MatRippleModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  
+
   constructor(
     private router: Router  ) { }
 

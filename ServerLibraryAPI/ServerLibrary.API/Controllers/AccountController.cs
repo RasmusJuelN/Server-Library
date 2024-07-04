@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -65,9 +66,13 @@ namespace ServerLibrary.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
-            if (!result.Succeeded) return BadRequest(result.Errors);
+            if (!result.Succeeded) 
+                return BadRequest(result.Errors);
 
-            return Ok("Your account has been created successfully.");
+            return Ok(new
+            {
+                Message = "Registration successful!"
+            });
         }
 
         private UserDto CreateApplicationUserDto(User user)
